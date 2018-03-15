@@ -1,0 +1,11 @@
+{
+  "name": "full-names",
+  "version": "0.0.0",
+  "description": "People names generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Edgar Albalate <dev.gardo@gmail.com>",
+  "license": "MIT"
+}
