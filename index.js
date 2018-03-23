@@ -1,9 +1,11 @@
 const Person = require('./lib/person.js')
 
-function generatePeopleJSONArray ( n = 16, options = {}, sortOptions = {}) {
+// function generatePeopleJSONArray ( n = 16, options = {}, sortOptions = {}) {
+function generatePeopleJSONArray (ops= {}) {
+  ops = Object.assign({n: 16, generator:(p)=> {return p}, options: {}}, ops)
   let array = []
-  for (let i = 0; i < n; i++) {
-    array.push( Person.random(options).toJSON())
+  for (let i = 0; i < ops.n; i++) {
+    array.push( ops.generator(Person.random(ops.options).toJSON(), i))
   }
   return array.sort( (a, b) => {
     if (a.lastname > b.lastname) return true
@@ -16,5 +18,5 @@ function generatePeopleJSONArray ( n = 16, options = {}, sortOptions = {}) {
 module.exports.generatePeopleJSONArray = generatePeopleJSONArray
 
 if (require.main == module) {
-  console.log( generatePeopleJSONArray() )
+  console.log( generatePeopleJSONArray({generator:(p) => {return {name: p.firstname + ' ' + p.lastname}}}) )
 }
